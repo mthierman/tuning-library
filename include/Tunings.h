@@ -32,14 +32,13 @@
 #ifndef __INCLUDE_TUNINGS_H
 #define __INCLUDE_TUNINGS_H
 
-#include "TuningsConcepts.h"
-
 #include <string>
 #include <string_view>
 #include <vector>
 #include <iostream>
 #include <memory>
 #include <array>
+#include <filesystem>
 
 static_assert(__cplusplus >= 202002L, "Surge team libraries have moved to C++ 20");
 
@@ -184,11 +183,6 @@ class TuningError : public std::exception
 };
 
 /**
- * makeStream returns a stream from a path
- */
-std::ifstream makeStream(const StreamablePath auto &path);
-
-/**
  * readSCLStream returns a Scale from the SCL input stream
  */
 Scale readSCLStream(std::istream &inf);
@@ -196,7 +190,7 @@ Scale readSCLStream(std::istream &inf);
 /**
  * readSCLFile returns a Scale from the SCL File in path
  */
-Scale readSCLFile(const StreamablePath auto &path);
+Scale readSCLFile(const std::filesystem::path &path);
 
 /**
  * parseSCLData returns a scale from the SCL file contents in memory
@@ -232,7 +226,7 @@ KeyboardMapping readKBMStream(std::istream &inf);
 /**
  * readKBMFile returns a KeyboardMapping from a KBM file name
  */
-KeyboardMapping readKBMFile(const StreamablePath auto &path);
+KeyboardMapping readKBMFile(const std::filesystem::path &path);
 
 /**
  * parseKBMData returns a KeyboardMapping from a KBM data in memory
